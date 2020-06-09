@@ -1,0 +1,28 @@
+#########################################################################
+#      Copyright (C) 2020        Sebastian Francisco Colomar Bauza      #
+#      SPDX-License-Identifier:  GPL-2.0-only                           #
+#########################################################################
+
+configs:
+  nlb:
+    file: /run/configs/etc/nginx/conf.d/nlb.conf
+services:
+  nlb:
+    configs:
+    - 
+      mode: 0440
+      source: nlb
+      target: /etc/nginx/conf.d/nlb.conf
+    deploy:
+      placement:
+        constraints:
+        - node.role == worker
+      replicas: 1
+    image: "secobau/nginx:1.0"
+    ports:
+    - "6443:6443"
+    volumes:
+    - nlb:/var/log/nginx
+version: '3.8'
+volumes:
+  nlb:
