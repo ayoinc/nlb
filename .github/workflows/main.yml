@@ -37,3 +37,15 @@ jobs:
         docker stack deploy -c ./etc/docker/swarm/docker-compose.yaml nlb
         sleep 10
         docker service ls
+        sleep 10
+        docker service ls
+        sleep 10
+        docker service ls
+        sleep 10
+        docker service ls
+        sleep 10
+        docker service ls
+        sleep 10
+        docker service ls
+        sleep 10
+        docker service ls
