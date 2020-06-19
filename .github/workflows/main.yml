@@ -33,4 +33,4 @@ jobs:
       id: test
       run: |
         docker swarm init
-        id
+        sudo ls /run
