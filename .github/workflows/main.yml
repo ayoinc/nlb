@@ -32,22 +32,12 @@ jobs:
     - name: Test the app
       id: test
       run: |
-        docker swarm init
+        set -x
         compose=etc/docker/swarm/docker-compose.yaml
-        sed -i s/worker/manager/ $compose
+        script=bin/check-service.sh
         sudo cp -rv ./run/configs /run
+        sed -i s/worker/manager/ $compose
+        docker swarm init
         docker stack deploy -c $compose nlb
-        sleep 1
-        docker service ls
-        sleep 1
-        docker service ls
-        sleep 1
-        docker service ls
-        sleep 1
-        docker service ls
-        sleep 1
-        docker service ls
-        sleep 1
-        docker service ls
-        sleep 1
-        docker service ls
+        chmod +x $script
+        ./$script
