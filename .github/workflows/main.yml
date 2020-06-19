@@ -13,7 +13,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
 
-  aws:
+  swarm:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -36,4 +36,6 @@ jobs:
         docker swarm init
         sudo cp -rv ./run/configs /run
         docker stack deploy -c ./etc/docker/swarm/docker-compose.yaml nlb
-        ./bin/check-service.sh
+        script=bin/check-service.sh
+        chmod +x ./$script
+        ./$script
