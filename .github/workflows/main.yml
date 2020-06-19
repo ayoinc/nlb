@@ -36,5 +36,5 @@ jobs:
         docker swarm init
         sudo cp -rv ./run/configs /run
         docker stack deploy -c ./etc/docker/swarm/docker-compose.yaml nlb
-        sleep 100
-        docker service ls
+        sleep 10
+        docker service ls | grep '\([0-9]\)/\1'
