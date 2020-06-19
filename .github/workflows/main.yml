@@ -32,5 +32,9 @@ jobs:
     - name: Test the app
       id: test
       run: |
+        set -x
         docker swarm init
-        sudo ls /run
+        sudo cp -rv ./run/configs /run
+        docker stack deploy -c ./etc/docker/swarm/docker-compose.yaml
+        sleep 100
+        docker service ls
