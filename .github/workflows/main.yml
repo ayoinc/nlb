@@ -32,10 +32,7 @@ jobs:
     - name: Test the app
       id: test
       run: |
-        set -x
         docker swarm init
         sudo cp -rv ./run/configs /run
         docker stack deploy -c ./etc/docker/swarm/docker-compose.yaml nlb
-        script=bin/check-service.sh
-        chmod +x ./$script
-        ./$script
+        docker service ls
