@@ -4,11 +4,17 @@
 #########################################################################
 
 configs:
+  nginx:
+    file: /run/configs/etc/nginx/nginx.conf
   nlb:
     file: /run/configs/etc/nginx/conf.d/nlb.conf
 services:
   nlb:
     configs:
+    - 
+      mode: 0440
+      source: nginx
+      target: /etc/nginx/nginx.conf
     - 
       mode: 0440
       source: nlb
