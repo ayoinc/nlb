@@ -33,19 +33,21 @@ jobs:
       id: test
       run: |
         docker swarm init
+        compose=etc/docker/swarm/docker-compose.yaml
+        sed -i s/worker/manager/ $compose
         sudo cp -rv ./run/configs /run
-        docker stack deploy -c ./etc/docker/swarm/docker-compose.yaml nlb
-        sleep 10
+        docker stack deploy -c $compose nlb
+        sleep 1
         docker service ls
-        sleep 10
+        sleep 1
         docker service ls
-        sleep 10
+        sleep 1
         docker service ls
-        sleep 10
+        sleep 1
         docker service ls
-        sleep 10
+        sleep 1
         docker service ls
-        sleep 10
+        sleep 1
         docker service ls
-        sleep 10
+        sleep 1
         docker service ls
