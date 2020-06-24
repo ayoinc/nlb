@@ -12,11 +12,11 @@ services:
   nlb:
     configs:
     - 
-      mode: 0440
+      mode: 0400
       source: nginx
       target: /etc/nginx/nginx.conf
     - 
-      mode: 0440
+      mode: 0400
       source: nlb
       target: /etc/nginx/conf.d/nlb.conf
     deploy:
