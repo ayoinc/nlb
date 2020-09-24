@@ -23,7 +23,7 @@ services:
         constraints:
         - node.role == worker
       replicas: 1
-    image: "secobau/nginx:5.3
+    image: secobau/nginx:5.3
     ports:
     - "6443:6443"
     volumes:
