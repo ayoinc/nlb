@@ -33,11 +33,18 @@ jobs:
       #id: test
       run: |
         set -x
-        compose=etc/docker/swarm/docker-compose.yaml
         script=.github/bin/check-service.sh
         sudo cp -rv ./run/configs /run
-        sed -i s/worker/manager/ $compose
         docker swarm init
+        compose=etc/docker/swarm/docker-compose.yaml
+        sed -i s/worker/manager/ $compose
         docker stack deploy -c $compose nlb
         chmod +x $script
         ./$script
+        docker stack rm nlb
+        compose=etc/docker/swarm/nlb.yaml
+        sed -i s/worker/manager/ $compose
+        docker stack deploy -c $compose nlb
+        chmod +x $script
+        ./$script
+        docker stack rm nlb
