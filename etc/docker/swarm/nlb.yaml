@@ -26,9 +26,5 @@ services:
     image: secobau/nginx:5.3
     ports:
     - "6443:6443"
-    volumes:
-    - nlb:/var/log/nginx
 version: '3.8'
-volumes:
-  nlb:
 ################################################################################
