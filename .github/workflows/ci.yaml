@@ -6,7 +6,7 @@ name: CI                                                                       #
 on:                                                                            #
   push:                                                                        #
     branches:                                                                  #
-    - v2.0                                                                   #
+    - v2.0                                                                     #
 jobs:                                                                          #
   docker:                                                                      #
     runs-on: ubuntu-18.04                                                      #
@@ -16,7 +16,7 @@ jobs:                                                                          #
     - name: test                                                               #
       run: |                                                                   #
         set -x                                                                 ;
-                                                         latest                      #
+                                                                               #
         branch=$(basename $GITHUB_REF)                                         ;
         project=$(basename $GITHUB_REPOSITORY)                                 ;
                                                                                #
