@@ -67,12 +67,13 @@ jobs:                                                                          #
         branch=$(basename $GITHUB_REF)                                         ;
         project=$(basename $GITHUB_REPOSITORY)                                 ;
                                                                                #
-        sudo cp -rv run/* /run                                                 \
-                                                                               #
         compose=etc/$mode/$project.yaml                                        ;
                                                                                #
         docker swarm init                                                      ;
         sed -i /node.role/s/worker/manager/ $compose                           ;
+                                                                               #
+        sudo cp -rv run/* /run                                                 \
+                                                                               #
         docker stack deploy -c $compose $project                               ;
                                                                                #
         while true                                                             ;
@@ -141,6 +142,21 @@ jobs:                                                                          #
         kubectl taint node $master node-role.kubernetes.io/master:NoSchedule-  ;
                                                                                #
         sed -i /imagePullPolicy/s/Always/Never/ $compose                       ;
+                                                                               #
+        sudo cp -rv run/* /run                                                 \
+        for config in $( find /run/configs -type f )                           ;
+          do                                                                   \
+            file=$( basename $config )                                         ;
+            kubectl create configmap $file --from-file $config                 ;
+            sudo rm -f $config                                                 ;
+          done                                                                 ;
+        for secret in $( find /run/secrets -type f )                           ;
+          do                                                                   \
+            file=$( basename $secret )                                         ;
+            kubectl create secret generic $file --from-file $secret            ;
+            sudo rm -f $secret                                                 ;
+          done                                                                 ;
+                                                                               #
         kubectl apply -f $compose                                              ;
                                                                                #
         while true                                                             ;
