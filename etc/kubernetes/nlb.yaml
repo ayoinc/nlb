@@ -63,10 +63,10 @@ spec:
             path: default.conf
           secretName: default.conf
       -
-        name: nginx-cache-vol
+        name: nginx-cache
         emptyDir: {}
       -
-        name: nginx-run-vol
+        name: nginx-run
         emptyDir: {}
 ---
 apiVersion: networking.k8s.io/v1
