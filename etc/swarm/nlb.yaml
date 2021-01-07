@@ -23,7 +23,7 @@ services:
         constraints:
         - node.role == worker
       replicas: 1
-    image: secobau/nginx:5.3
+    image: academiaonline/nginx:latest
     ports:
     - "6443:8080"
 version: '3.8'
