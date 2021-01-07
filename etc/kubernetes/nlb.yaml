@@ -54,6 +54,7 @@ spec:
           -
             key: nginx.conf
             path: nginx.conf
+          name: nginx.conf
       - 
         name: nginx-default
         secret:
