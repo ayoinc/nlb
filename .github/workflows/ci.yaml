@@ -6,7 +6,7 @@ name: CI                                                                       #
 on:                                                                            #
   push:                                                                        #
     branches:                                                                  #
-    - docker                                                                   #
+    - v2.0                                                                   #
 jobs:                                                                          #
   docker:                                                                      #
     runs-on: ubuntu-18.04                                                      #
@@ -16,7 +16,7 @@ jobs:                                                                          #
     - name: test                                                               #
       run: |                                                                   #
         set -x                                                                 ;
-                                                                               #
+                                                         latest                      #
         branch=$(basename $GITHUB_REF)                                         ;
         project=$(basename $GITHUB_REPOSITORY)                                 ;
                                                                                #
@@ -27,7 +27,7 @@ jobs:                                                                          #
           --volume /run/configs/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro  \
           --volume                                                             \
             /run/secrets/etc/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro \
-          --name test academiaonline/nginx:latest                              ;
+          --name test academiaonline/nginx:8.0                                 ;
                                                                                #
         while true                                                             ;
           do                                                                   \
