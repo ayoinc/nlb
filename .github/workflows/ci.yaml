@@ -28,8 +28,8 @@ jobs:                                                                          #
           --cpus "0.1" -m 100m --memory-reservation 100m                       \
           --volume /run/configs/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro  \
           --volume                                                             \
-           /run/configs/etc/nginx/conf.d/nlb.conf:/etc/nginx/conf.d/nlb.conf:ro\
-          --name test secobau/nginx:5.3                                        ;
+           /run/secrets/etc/nginx/conf.d/nlb.conf:/etc/nginx/conf.d/nlb.conf:ro\
+          --name test secobau/nginx:latest                                     ;
                                                                                #
         while true                                                             ;
           do                                                                   \
