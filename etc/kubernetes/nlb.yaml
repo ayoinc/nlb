@@ -18,9 +18,8 @@ spec:
         app: nlb
     spec:
       containers: 
-      - name: nlb
-        image: academiaonline/nlb:latest
-        imagePullPolicy: Always
+      - name: nginx
+        image: secobau/nginx:5.3
         ports:
         - containerPort: 8080
         resources:
