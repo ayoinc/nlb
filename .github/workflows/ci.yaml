@@ -44,7 +44,7 @@ jobs:                                                                          #
             sleep 10                                                           ;
             docker logs test \
             |                                                                  \
-            grep "connected to .*:8080"                           \
+            grep "start worker processes"                           \
             &&                                                                 \
             break                                                              ;
           done                                                                 ;
@@ -87,7 +87,7 @@ jobs:                                                                          #
             sleep 10                                                           ;
             docker service logs ${project}_${project} \
             |                                                                  \
-            grep "connected to .*:8080"                           \
+            grep "start worker processes"                           \
             &&                                                                 \
             break                                                              ;
           done                                                                 ;
@@ -155,7 +155,7 @@ jobs:                                                                          #
             sleep 10                                                           ;
             kubectl logs deploy/$project                                       \
             |                                                                  \
-            grep "connected to .*:8080"                           \
+            grep "start worker processes"                           \
             &&                                                                 \
             break                                                              ;
           done                                                                 ;
