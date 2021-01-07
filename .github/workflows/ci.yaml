@@ -22,29 +22,31 @@ jobs:                                                                          #
         branch=$(basename $GITHUB_REF)                                         ;
         project=$(basename $GITHUB_REPOSITORY)                                 ;
                                                                                #
-        sudo cp -rv run/* /run
+        sudo cp -rv run/* /run                                                 \
                                                                                #
-        docker run -d -p 8080:8080 --cpus "0.1" -m 100m --memory-reservation 100m  \
-          --volume /run/configs/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro \
-          --volume /run/configs/etc/nginx/conf.d/nlb.conf:/etc/nginx/conf.d/nlb.conf:ro \
-          --name test secobau/nginx:5.3                     ;
+        docker run -d -p 8080:8080                                             \
+          --cpus "0.1" -m 100m --memory-reservation 100m                       \
+          --volume /run/configs/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro  \
+          --volume                                                             \
+           /run/configs/etc/nginx/conf.d/nlb.conf:/etc/nginx/conf.d/nlb.conf:ro\
+          --name test secobau/nginx:5.3                                        ;
                                                                                #
         while true                                                             ;
           do                                                                   \
             sleep 10                                                           ;
             docker exec test ps                                                \
             |                                                                  \
-            grep "1.*nginx: master process"                           \
+            grep "1.*nginx: master process"                                    \
             &&                                                                 \
             break                                                              ;
           done                                                                 ;
-                                                                               #
         while true                                                             ;
           do                                                                   \
             sleep 10                                                           ;
-            docker logs test \
+            docker logs test                                                   \
+              2>& 1                                                            \
             |                                                                  \
-            grep "start worker processes"                           \
+            grep "start worker processes"                                      \
             &&                                                                 \
             break                                                              ;
           done                                                                 ;
@@ -65,7 +67,7 @@ jobs:                                                                          #
         branch=$(basename $GITHUB_REF)                                         ;
         project=$(basename $GITHUB_REPOSITORY)                                 ;
                                                                                #
-        sudo cp -rv run/* /run
+        sudo cp -rv run/* /run                                                 \
                                                                                #
         compose=etc/$mode/$project.yaml                                        ;
                                                                                #
@@ -85,9 +87,10 @@ jobs:                                                                          #
         while true                                                             ;
           do                                                                   \
             sleep 10                                                           ;
-            docker service logs ${project}_${project} \
+            docker service logs ${project}_${project}                          \
+              2>& 1                                                            \
             |                                                                  \
-            grep "start worker processes"                           \
+            grep "start worker processes"                                      \
             &&                                                                 \
             break                                                              ;
           done                                                                 ;
@@ -108,7 +111,7 @@ jobs:                                                                          #
         branch=$(basename $GITHUB_REF)                                         ;
         project=$(basename $GITHUB_REPOSITORY)                                 ;
                                                                                #
-        sudo cp -rv run/* /run
+        sudo cp -rv run/* /run                                                 \
                                                                                #
         compose=etc/$mode/$project.yaml                                        ;
                                                                                #
@@ -155,8 +158,8 @@ jobs:                                                                          #
             sleep 10                                                           ;
             kubectl logs deploy/$project                                       \
             |                                                                  \
-            grep "start worker processes"                           \
+            grep "start worker processes"                                      \
             &&                                                                 \
             break                                                              ;
           done                                                                 ;
-                                                                               #
+################################################################################
