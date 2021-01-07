@@ -11,11 +11,9 @@ jobs:                                                                          #
   docker:                                                                      #
     runs-on: ubuntu-18.04                                                      #
     steps:                                                                     #
-    -                                                                          #
-      name: checkout                                                           #
+    - name: checkout                                                           #
       uses: actions/checkout@v2                                                #
-    -                                                                          #
-      name: test                                                               #
+    - name: test                                                               #
       run: |                                                                   #
         set -x                                                                 ;
                                                                                #
@@ -28,8 +26,8 @@ jobs:                                                                          #
           --cpus "0.1" -m 100m --memory-reservation 100m                       \
           --volume /run/configs/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro  \
           --volume                                                             \
-           /run/secrets/etc/nginx/conf.d/nlb.conf:/etc/nginx/conf.d/nlb.conf:ro\
-          --name test secobau/nginx:latest                                     ;
+            /run/secrets/etc/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro \
+          --name test academiaonline/nginx:latest                              ;
                                                                                #
         while true                                                             ;
           do                                                                   \
@@ -56,11 +54,9 @@ jobs:                                                                          #
       mode: swarm                                                              #
     runs-on: ubuntu-18.04                                                      #
     steps:                                                                     #
-    -                                                                          #
-      name: checkout                                                           #
+    - name: checkout                                                           #
       uses: actions/checkout@v2                                                #
-    -                                                                          #
-      name: test                                                               #
+    - name: test                                                               #
       run: |                                                                   #
         set -x                                                                 ;
                                                                                #
@@ -101,11 +97,9 @@ jobs:                                                                          #
       mode: kubernetes                                                         #
     runs-on: ubuntu-18.04                                                      #
     steps:                                                                     #
-    -                                                                          #
-      name: checkout                                                           #
+    - name: checkout                                                           #
       uses: actions/checkout@v2                                                #
-    -                                                                          #
-      name: test                                                               #
+    - name: test                                                               #
       run: |                                                                   #
         set -x                                                                 ;
                                                                                #
