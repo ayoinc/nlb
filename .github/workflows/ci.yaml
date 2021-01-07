@@ -161,6 +161,7 @@ jobs:                                                                          #
         while true                                                             ;
           do                                                                   \
             sleep 10                                                           ;
+            kubectl get svc | grep "$project.*/TCP" && break
             kubectl get svc | grep "$project.*NodePort.*80:30000/TCP" && break ;
           done                                                                 ;
         while true                                                             ;
