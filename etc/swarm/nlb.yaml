@@ -22,7 +22,7 @@ services:
       start_period: 30s
       test: ["CMD-SHELL", "netstat -ln | grep -q 8080 || exit 1"]
       timeout: 1s
-   secrets:
+    secrets:
     - mode: 0400
       source: default.conf
       target: /etc/nginx/conf.d/default.conf
