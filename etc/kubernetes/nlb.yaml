@@ -21,18 +21,17 @@ spec:
       - name: nginx
         image: academiaonline/nginx:latest
         livenessProbe:
+          tcpSocket:
+            port: 8080
           failureThreshold: 3
           initialDelaySeconds: 30
           periodSeconds: 10
           successThreshold: 1
-          tcpSocket:
-            port: 8080
           timeoutSeconds: 1
         ports:
           - containerPort: 8080
         readinessProbe:
-          httpGet:
-            path: /
+          tcpSocket:
             port: 8080
           failureThreshold: 3
           initialDelaySeconds: 1
