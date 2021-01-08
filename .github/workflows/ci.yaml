@@ -22,7 +22,7 @@ jobs:                                                                          #
                                                                                #
         sudo cp -rv run/* /run                                                 ;
                                                                                #
-        docker run -d -p 8080:8080                                             \
+        docker run -d -p 80:8080                                               \
           --cpus "0.1" -m 100m --memory-reservation 100m                       \
           --health-cmd "netstat -ln | grep -q 8080"                            \
           --health-interval=10s                                                \
