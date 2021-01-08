@@ -24,6 +24,11 @@ jobs:                                                                          #
                                                                                #
         docker run -d -p 8080:8080                                             \
           --cpus "0.1" -m 100m --memory-reservation 100m                       \
+          --healt-cmd "netstat -ln | grep -q 8080 || exit 1"                   \
+          --health-interval=10s                                                \
+          --health-retries=3                                                   \
+          --health-start-period=30s                                            \
+          --health-timeout=1s                                                  \
           --volume /run/configs/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro  \
           --volume                                                             \
             /run/secrets/etc/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro \
