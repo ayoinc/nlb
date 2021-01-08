@@ -17,7 +17,7 @@ services:
     expose:
     - 8080
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080"]
+      test: ["CMD-SHELL", "netstat -ln | grep -q 8080 || exit 1"]
       interval: 10s
       timeout: 1s
       retries: 3
