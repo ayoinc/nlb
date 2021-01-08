@@ -24,7 +24,7 @@ jobs:                                                                          #
                                                                                #
         docker run -d -p 8080:8080                                             \
           --cpus "0.1" -m 100m --memory-reservation 100m                       \
-          --healt-cmd "netstat -ln | grep -q 8080 || exit 1"                   \
+          --health-cmd "netstat -ln | grep -q 8080 || exit 1"                  \
           --health-interval=10s                                                \
           --health-retries=3                                                   \
           --health-start-period=30s                                            \
