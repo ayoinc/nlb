@@ -6,7 +6,7 @@ name: CI                                                                       #
 on:                                                                            #
   push:                                                                        #
     branches:                                                                  #
-    - docker                                                                   #
+    - v2.1                                                                     #
 jobs:                                                                          #
   docker:                                                                      #
     runs-on: ubuntu-18.04                                                      #
@@ -32,7 +32,7 @@ jobs:                                                                          #
           --volume /run/configs/etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro  \
           --volume                                                             \
             /run/secrets/etc/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro \
-          --name test academiaonline/nginx:latest                              ;
+          --name test academiaonline/nginx:8.1                                 ;
                                                                                #
         while true                                                             ;
           do                                                                   \
