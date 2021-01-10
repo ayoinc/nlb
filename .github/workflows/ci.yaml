@@ -20,6 +20,18 @@ jobs:                                                                          #
         branch=$(basename $GITHUB_REF)                                         ;
         project=$(basename $GITHUB_REPOSITORY)                                 ;
                                                                                #
+        port_master=6443                                                       ;
+        ip_master1=10.168.1.100                                                ;
+        ip_master2=10.168.3.100                                                ;
+        ip_master3=10.168.5.100                                                ;
+        sed --in-place s/port_master/$port_master/                             \
+          $uuid/run/secrets/etc/nginx/conf.d/default.conf                      ;
+        sed --in-place s/ip_master1/$ip_master1/                               \
+          $uuid/run/secrets/etc/nginx/conf.d/default.conf                      ;
+        sed --in-place s/ip_master2/$ip_master2/                               \
+          $uuid/run/secrets/etc/nginx/conf.d/default.conf                      ;
+        sed --in-place s/ip_master3/$ip_master3/                               \
+          $uuid/run/secrets/etc/nginx/conf.d/default.conf                      ;
         sudo cp -rv run/* /run                                                 ;
                                                                                #
         docker run -d -p 80:8080                                               \
@@ -73,6 +85,18 @@ jobs:                                                                          #
         docker swarm init                                                      ;
         sed -i /node.role/s/worker/manager/ $compose                           ;
                                                                                #
+        port_master=6443                                                       ;
+        ip_master1=10.168.1.100                                                ;
+        ip_master2=10.168.3.100                                                ;
+        ip_master3=10.168.5.100                                                ;
+        sed --in-place s/port_master/$port_master/                             \
+          $uuid/run/secrets/etc/nginx/conf.d/default.conf                      ;
+        sed --in-place s/ip_master1/$ip_master1/                               \
+          $uuid/run/secrets/etc/nginx/conf.d/default.conf                      ;
+        sed --in-place s/ip_master2/$ip_master2/                               \
+          $uuid/run/secrets/etc/nginx/conf.d/default.conf                      ;
+        sed --in-place s/ip_master3/$ip_master3/                               \
+          $uuid/run/secrets/etc/nginx/conf.d/default.conf                      ;
         sudo cp -rv run/* /run                                                 ;
                                                                                #
         docker stack deploy -c $compose $project                               ;
@@ -111,6 +135,18 @@ jobs:                                                                          #
         branch=$(basename $GITHUB_REF)                                         ;
         project=$(basename $GITHUB_REPOSITORY)                                 ;
                                                                                #
+        port_master=6443                                                       ;
+        ip_master1=10.168.1.100                                                ;
+        ip_master2=10.168.3.100                                                ;
+        ip_master3=10.168.5.100                                                ;
+        sed --in-place s/port_master/$port_master/                             \
+          $uuid/run/secrets/etc/nginx/conf.d/default.conf                      ;
+        sed --in-place s/ip_master1/$ip_master1/                               \
+          $uuid/run/secrets/etc/nginx/conf.d/default.conf                      ;
+        sed --in-place s/ip_master2/$ip_master2/                               \
+          $uuid/run/secrets/etc/nginx/conf.d/default.conf                      ;
+        sed --in-place s/ip_master3/$ip_master3/                               \
+          $uuid/run/secrets/etc/nginx/conf.d/default.conf                      ;
         sudo cp -rv run/* /run                                                 ;
                                                                                #
         compose=etc/$mode/$project.yaml                                        ;
