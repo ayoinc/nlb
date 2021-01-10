@@ -35,7 +35,7 @@ services:
       start_period: 30s
       test: ["CMD-SHELL", "netstat -ln | grep -q 8080"]
       timeout: 1s
-    image: academiaonline/nginx:latest
+    image: academiaonline/8.1:latest
     ports:
     - "port_master:8080"
     secrets:
