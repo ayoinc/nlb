@@ -81,7 +81,7 @@ jobs:                                                                          #
         branch=$(basename $GITHUB_REF)                                         ;
         project=$(basename $GITHUB_REPOSITORY)                                 ;
                                                                                #
-        compose=etc/$mode/$project.yaml                                        ;
+        compose=etc/$mode/manifests/$project.yaml                              ;
         uuid=.                                                                 ;
         sed --in-place /node.role/s/worker/manager/                            \
           $uuid/$compose                                                       ;
@@ -155,9 +155,9 @@ jobs:                                                                          #
           $uuid/run/secrets/etc/nginx/conf.d/default.conf                      ;
         sudo cp -rv run/* /run                                                 ;
                                                                                #
-        compose=etc/$mode/$project.yaml                                        ;
+        compose=etc/$mode/manifests/$project.yaml                              ;
                                                                                #
-        uuid=$( md5sum $compose | cut -d' ' -f1 )                              ;
+        uuid=$( md5sum $compose | cut -d" " -f1 )                              ;
         git clone --single-branch -b v1.1                                      \
           https://github.com/academiaonline/kubernetes $uuid                   ;
         path=$uuid/bin/standalone/ubuntu18/install.sh                          ;
